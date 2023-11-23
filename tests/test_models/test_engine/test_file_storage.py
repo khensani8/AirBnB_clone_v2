@@ -107,3 +107,28 @@ class test_fileStorage(unittest.TestCase):
         from models.engine.file_storage import FileStorage
         print(type(storage))
         self.assertEqual(type(storage), FileStorage)
+
+    def setUp(self):
+        self.hbnb_command = HBNBCommand()
+
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_create_with_valid_params(self, mock_stdout):
+        self.hbnb_command.do_create("User name=\"John\" age=25")
+        expected_output = "User\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_create_with_invalid_class(self, mock_stdout):
+        self.hbnb_command.do_create("InvalidClass name=\"John\" age=25")
+        expected_output = "** class doesn't exist **\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_create_with_invalid_params(self, mock_stdout):
+        self.hbnb_command.do_create("User name=\"John\" invalid_param=abc")
+        expected_output = "Error creating instance: Invalid parameter: invalid_param=abc\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+if __name__ == '__main__':
+    unittest.main()
+

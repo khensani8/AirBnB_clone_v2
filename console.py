@@ -84,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
         except Exception as mess:
             pass
         finally:
-            return line
+                return line
 
     def postcmd(self, stop, line):
         """Prints if isatty is false"""
@@ -114,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-    """ Create an object of any class with given parameters"""
+        """ Create an object of any class with given parameters"""
     if not args:
         print("** class name missing **")
         return

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """starts a Flask web application"""
-from flask import Flask 
+from flask import Flask
 app = Flask(__name__)
 
 
@@ -8,6 +8,7 @@ app = Flask(__name__)
 def hello_hbnb():
     """Handles root url"""
     return 'Hello HBNB!'
+
 
 @app.route('/', strict_slashes=False)
 def hbnb():
